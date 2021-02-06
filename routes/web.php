@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AgendaController::class, 'index']);
+Route::post('/confirmacao', [AgendaController::class, 'store']);

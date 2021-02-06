@@ -14,17 +14,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda', ['horarios' => Agenda::select('horario')->distinct()->get()]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('agenda', ['horarios' => Agenda::where("reservado", false)->select('horario')->distinct()->get()]);
     }
 
     /**
@@ -35,51 +25,27 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Agenda $agenda)
-    {
-        //
-    }
+        $agenda = Agenda::where('horario', $request['horario'])
+        ->where("reservado", false)
+        ->first();
+        $success = false;
+        $dados = [];
+        if( $agenda != null ){
+            $agenda->nome = $request["nome"];
+            $agenda->telefone = $request["celular"];
+            $agenda->inscritos = $request["inscritos"];
+            $agenda->reservado = true;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Agenda $agenda)
-    {
-        //
-    }
+            $agenda->save();
+            $success = true;
+            $dados = [
+                "horario" => $agenda->horario->format('d/m/Y à\s H:i'),
+                "telefone" => $agenda->telefone
+            ];
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Agenda $agenda)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Agenda  $agenda
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Agenda $agenda)
-    {
-        //
+        // return view("confirmacao", [ "mensagem" => json_encode( $request )  ]);
+        return view("confirmacao", [ "success" => $success, "agendas" => Agenda::all(), "dados" => $dados  ]);
     }
 }

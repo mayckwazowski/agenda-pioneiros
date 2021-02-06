@@ -146,14 +146,13 @@
                                 </div>
                             </div>
                         </div>
-                        <form method="POST" action="/save" class="form-style-1">
-                            @method('PUT')
+                        <form method="POST" action="/confirmacao" class="form-style-1">
                             <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                                 <div class="ml-12">
                                     <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                         <div class="form-group">
                                             <label for="horario">Dia e Hor&aacute;rio:</label>
-                                            <select id="horario" class="form-control">
+                                            <select id="horario" name="horario" class="form-control">
                                             @foreach ($horarios as $horario)
                                                 <option value="{{ $horario->horario }}">{{ $horario->horario->format('d/m/Y H:i') }}</option>
                                             @endforeach
