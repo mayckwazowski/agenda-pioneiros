@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Agenda;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AgendaController extends Controller
@@ -14,7 +15,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda', ['horarios' => Agenda::where("reservado", false)->select('horario')->distinct()->get()]);
+        return view('agenda', ['horarios' => Agenda::where("reservado", false)->whereDate('horario', '>=', Carbon::now('America/Sao_Paulo'))->select('horario')->distinct()->get()]);
     }
 
     /**
