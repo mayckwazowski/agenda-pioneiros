@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agenda;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ExtraController extends Controller
 {
+    public function listaAgendamentos(){
+        return view( 'lista', ["agendas" => Agenda::where("reservado", true)
+        ->where('horario', '>=', Carbon::now('America/Sao_Paulo'))
+        ->whereNotNull('nome')
+        ->select('*')
+        ->orderBy("horario")
+        ->distinct()->get()] );
+    }
+
     public function vagas() {
         DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,21,14), Carbon::create(2021,02,21,17), 20, 15 ) );
 

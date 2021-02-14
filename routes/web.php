@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AgendaController::class, 'index']);
 Route::post('/confirmacao', [AgendaController::class, 'store']);
 Route::get('/vagas-extras', [ExtraController::class, "vagas"]);
+Route::get('/lista-agendamentos', [ExtraController::class, "listaAgendamentos"]);
