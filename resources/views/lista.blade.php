@@ -59,7 +59,7 @@
                                         <td>{{ $agenda->horario }}</td>
                                         <td>{{ $agenda->nome }}</td>
                                         <td>{{ $agenda->telefone }}</td>
-                                        <td>{{ $agenda->inscritos }}</td>
+                                        <td>{{ nl2br( $agenda->inscritos ) }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
