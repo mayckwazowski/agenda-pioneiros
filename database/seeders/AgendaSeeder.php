@@ -15,11 +15,26 @@ class AgendaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('agendas')->truncate();
-        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,12,15), Carbon::create(2021,02,12,18), 20, 5 ) );
-        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,13,15), Carbon::create(2021,02,13,18), 20, 5 ) );
-        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,14,8), Carbon::create(2021,02,14,12), 20, 5 ) );
-        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,21,8), Carbon::create(2021,02,21,12), 20, 5 ) );
+        // DB::table('agendas')->truncate();
+        // DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,12,15), Carbon::create(2021,02,12,18), 20, 5 ) );
+        // DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,13,15), Carbon::create(2021,02,13,18), 20, 5 ) );
+        // DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,14,0), Carbon::create(2021,02,14,2), 20, 5 ) );
+        DB::table('agendas')->insert(
+            $this->createHorarios(
+                Carbon::create(2021,02,17,8),
+                Carbon::create(2021,02,17,11),
+                20,
+                2 ) );
+
+        DB::table('agendas')->insert(
+            $this->createHorarios(
+                Carbon::create(2021,02,20,15),
+                Carbon::create(2021,02,20,19),
+                20,
+                15 ) );
+
+        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,21,8), Carbon::create(2021,02,21,12), 20, 10 ) );
+//        DB::table('agendas')->insert( $this->createHorarios( Carbon::create(2021,02,21,14), Carbon::create(2021,02,21,17), 20, 15 ) );
 
     }
 
