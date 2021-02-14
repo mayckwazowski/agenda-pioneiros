@@ -1,6 +1,6 @@
 <?php
-
 use App\Http\Controllers\AgendaController;
+use App\Http\Controllers\ExtraController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AgendaController::class, 'index']);
 Route::post('/confirmacao', [AgendaController::class, 'store']);
+Route::get('/vagas-extras', [ExtraController::class, "vagas"]);

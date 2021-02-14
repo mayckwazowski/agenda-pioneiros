@@ -15,7 +15,13 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        return view('agenda', ['horarios' => Agenda::where("reservado", false)->whereDate('horario', '>=', Carbon::now('America/Sao_Paulo'))->select('horario')->distinct()->get()]);
+        return view('agenda', [
+            'horarios' => Agenda::where("reservado", false)
+                            ->where('horario', '>=', Carbon::now('America/Sao_Paulo'))
+                            // ->whereDate('horario', '>=', "2021-02-14 00:00:00")
+                            ->select('horario')
+                            ->orderBy("horario")
+                            ->distinct()->get()]);
     }
 
     /**
